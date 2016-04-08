@@ -11,7 +11,14 @@ Tor run the example tree loop:
 - pyROOT
 - ?
 
-Manual:
+
+How to run the example:
+
+1) compile ME python libraries by calling "python compile_subprocesses.py" in [ewk, qcd]_MG_dir/SubProcesses respectively
+2) run "python run_example.py" 
+
+
+General workflow:
 
 
 1) generate a process, e.g. 'generate p p > z z jj QCD=0, z > e+ e-, z > mu+ mu-'
