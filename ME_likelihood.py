@@ -3,6 +3,7 @@ import operator
 import importlib
 
 import sys
+# this is a somewhat stupid trick to add the lhapdf python interface
 sys.path.append('/usr/local/lib/python2.7/site-packages')
 import lhapdf
 
@@ -22,11 +23,11 @@ def get_matrices(subprocess_dir, param_card = None) :
 #    print files
 
     for f in files :
-        matrices[f] = importlib.import_module("%s.%s.matrix2py"%(subprocess_dir, f))
+        matrices[f] = importlib.import_module("%s.%s.matrix2py"%(subprocess_dir.replace('/', '.'), f))
 
     for k, v in matrices.iteritems() :
         v.initialise('/Users/pigard/MG5_aMC_v2_3_3/zzjj_2e2mujj_qcd_fortran/Cards/param_card.dat')
-    print matrices
+#    print matrices
     return matrices
 
 def invert_momenta(p):
@@ -86,7 +87,7 @@ class likelihood :
 
 
     def get_likelihood(self, Z1, Z2, tagjet1, tagjet2) :
-     
+
         ZZjj_p4 = (Z1[0] + Z1[1] + Z2[0] + Z2[1] + tagjet1 + tagjet2)
         incoming_partons = get_incoming_partons(ZZjj_p4) 
 
@@ -167,8 +168,8 @@ class likelihood :
         likelihood = 0
 
         print 'LHE'
-        for p in p4ded :
-            print p
+#        for p in p4ded :
+#            print p
 
         me2 = 0
         sums = []
